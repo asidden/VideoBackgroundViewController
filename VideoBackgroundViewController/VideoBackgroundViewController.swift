@@ -12,6 +12,7 @@ import MediaPlayer
 import AVKit
 
 /// Class that shows a video in the backgroun of the view controller
+@objc
 open class VideoBackgroundViewController: UIViewController {
     
     /// The video player to use for the video in the background
@@ -72,7 +73,7 @@ open class VideoBackgroundViewController: UIViewController {
     /**
      Gets trigger when the video goes to the end, 
      */
-    func videoPlayerItemDidReachEnd() {
+    @objc func videoPlayerItemDidReachEnd() {
         videoPlayer.player?.seek(to: kCMTimeZero)
         videoPlayer.player?.play()
     }
@@ -82,11 +83,11 @@ open class VideoBackgroundViewController: UIViewController {
         didSet {
             switch videoScalingMode {
             case .resize:
-                videoPlayer.videoGravity = AVLayerVideoGravityResize
+                videoPlayer.videoGravity = AVLayerVideoGravity.resize.rawValue
             case .resizeAspect:
-                videoPlayer.videoGravity = AVLayerVideoGravityResizeAspect
+                videoPlayer.videoGravity = AVLayerVideoGravity.resizeAspect.rawValue
             case .resizeAspectFill:
-                videoPlayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+                videoPlayer.videoGravity = AVLayerVideoGravity.resizeAspectFill.rawValue
             }
         }
     }
